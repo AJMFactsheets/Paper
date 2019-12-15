@@ -1,0 +1,22 @@
+From f1f390991146057cc9e4128504f044a87f7d67c7 Mon Sep 17 00:00:00 2001
+From: AJMFactsheets <AJMFactsheets@gmail.com>
+Date: Sat, 14 Dec 2019 23:58:39 -0600
+Subject: [PATCH] Fix #2681 - Items vanish through exit end portal
+
+
+diff --git a/src/main/java/net/minecraft/server/World.java b/src/main/java/net/minecraft/server/World.java
+index 1bea6dff..95a722ce 100644
+--- a/src/main/java/net/minecraft/server/World.java
++++ b/src/main/java/net/minecraft/server/World.java
+@@ -690,7 +690,7 @@ public abstract class World implements IIBlockAccess, GeneratorAccess, AutoClose
+         int k;
+ 
+         if (i >= -30000000 && j >= -30000000 && i < 30000000 && j < 30000000) {
+-            if (this.isChunkLoaded(i >> 4, j >> 4)) {
++            if (this.isChunkLoaded(i >> 4, j >> 4) || !this.keepSpawnInMemory) { // Paper - Fix #2681 - Items vanish through exit end portal
+                 k = this.getChunkAt(i >> 4, j >> 4).a(heightmap_type, i & 15, j & 15) + 1;
+             } else {
+                 k = 0;
+-- 
+2.17.1
+

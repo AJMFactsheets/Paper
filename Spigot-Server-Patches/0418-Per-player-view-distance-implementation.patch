@@ -1,4 +1,4 @@
-From 7b30e2492b196a4f2c0866b9c07d8dca3183c6e2 Mon Sep 17 00:00:00 2001
+From 746645a6e48f140bf900ba2c765e05bee3f6006c Mon Sep 17 00:00:00 2001
 From: Spottedleaf <Spottedleaf@users.noreply.github.com>
 Date: Fri, 27 Dec 2019 14:20:40 -0800
 Subject: [PATCH] Per player view distance implementation
@@ -70,7 +70,7 @@ index 1d7d1ffbf..45f7cf162 100644
 +    }
  }
 diff --git a/src/main/java/net/minecraft/server/ChunkMapDistance.java b/src/main/java/net/minecraft/server/ChunkMapDistance.java
-index 8c1945687..0fd39350a 100644
+index 8c1945687..cf47d9d7f 100644
 --- a/src/main/java/net/minecraft/server/ChunkMapDistance.java
 +++ b/src/main/java/net/minecraft/server/ChunkMapDistance.java
 @@ -27,12 +27,12 @@ import org.apache.logging.log4j.Logger;
@@ -127,7 +127,7 @@ index 8c1945687..0fd39350a 100644
          }
  
      }
-@@ -249,9 +254,202 @@ public abstract class ChunkMapDistance {
+@@ -249,9 +254,207 @@ public abstract class ChunkMapDistance {
          return s;
      }
  
@@ -143,6 +143,8 @@ index 8c1945687..0fd39350a 100644
 +    }
 +
 +    class TicketTracker {
++
++        static final int LOADED_PLAYER_REFERENCE = -2;
 +
 +        private final it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap chunkReferenceMap = new it.unimi.dsi.fastutil.longs.Long2IntOpenHashMap(8192, 0.25f);
 +        {
@@ -312,6 +314,7 @@ index 8c1945687..0fd39350a 100644
 +                this.pendingChunkLoadsByPlayer.computeIfPresent(playerReference, (Integer keyInMap, Integer valueInMap) -> {
 +                    return valueInMap - 1;
 +                });
++                this.chunkReferenceMap.put(coordinate, LOADED_PLAYER_REFERENCE);
 +            }
 +        }
 +
@@ -320,9 +323,11 @@ index 8c1945687..0fd39350a 100644
 +            long coordinate = MCUtil.getCoordinateKey(chunkX, chunkZ);
 +            int playerReference = this.chunkReferenceMap.remove(coordinate);
 +            if (playerReference != -1) {
-+                this.pendingChunkLoadsByPlayer.computeIfPresent(playerReference, (Integer keyInMap, Integer valueInMap) -> {
-+                    return valueInMap - 1;
-+                });
++                if (playerReference != LOADED_PLAYER_REFERENCE) {
++                    this.pendingChunkLoadsByPlayer.computeIfPresent(playerReference, (Integer keyInMap, Integer valueInMap) -> {
++                        return valueInMap - 1;
++                    });
++                }
 +                ChunkMapDistance.this.removeTicket(coordinate, new Ticket<>(TicketType.PLAYER, ChunkMapDistance.getPlayerTicketLevel(), new ChunkCoordIntPair(chunkX, chunkZ)));
 +            }
 +        }

@@ -1,4 +1,4 @@
-From 9837a488a50541579715ed18b8cbe8e66aa5cdfb Mon Sep 17 00:00:00 2001
+From 1df230c9755c6d75d000503abce6d7cd309aafe6 Mon Sep 17 00:00:00 2001
 From: Spottedleaf <Spottedleaf@users.noreply.github.com>
 Date: Fri, 27 Dec 2019 16:56:42 -0800
 Subject: [PATCH] PlayerNaturallySpawnCreaturesEvent and optimise
@@ -15,7 +15,7 @@ For isOutsideRange optimisation (not apart of the patch by aikar),
 we optimise the check by using a distance map
 
 diff --git a/src/main/java/net/minecraft/server/ChunkMapDistance.java b/src/main/java/net/minecraft/server/ChunkMapDistance.java
-index 0fd39350a..f9ed8a0e1 100644
+index cf47d9d7f..233c138a1 100644
 --- a/src/main/java/net/minecraft/server/ChunkMapDistance.java
 +++ b/src/main/java/net/minecraft/server/ChunkMapDistance.java
 @@ -31,7 +31,7 @@ public abstract class ChunkMapDistance {
@@ -54,7 +54,7 @@ index 0fd39350a..f9ed8a0e1 100644
              //this.g.b(i, Integer.MAX_VALUE, false); // Paper - no longer used
          }
  
-@@ -452,13 +452,17 @@ public abstract class ChunkMapDistance {
+@@ -457,13 +457,17 @@ public abstract class ChunkMapDistance {
      // Paper end
  
      public int b() {
@@ -130,7 +130,7 @@ index 79bfcfefb..7ac4b9541 100644
      public EntityPlayer(MinecraftServer minecraftserver, WorldServer worldserver, GameProfile gameprofile, PlayerInteractManager playerinteractmanager) {
          super((World) worldserver, gameprofile);
 diff --git a/src/main/java/net/minecraft/server/PlayerChunkMap.java b/src/main/java/net/minecraft/server/PlayerChunkMap.java
-index a63da7513..04794f23d 100644
+index b5b650460..657b5b394 100644
 --- a/src/main/java/net/minecraft/server/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/PlayerChunkMap.java
 @@ -132,6 +132,19 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.d {

@@ -1,4 +1,4 @@
-From 61b86fc309b0fe4e51b22de968f143df16e3ac27 Mon Sep 17 00:00:00 2001
+From cb7461c22f5d896b0c1e0f71d28b94f88d2c50c1 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Tue, 15 Aug 2017 22:29:12 -0400
 Subject: [PATCH] Expand World.spawnParticle API and add Builder
@@ -10,7 +10,7 @@ Adds an option to control the force mode of the particle.
 This adds a new Builder API which is much friendlier to use.
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 87c3d3276..1bfe4e475 100644
+index 87c3d327..1bfe4e47 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -56,7 +56,7 @@ public class WorldServer extends World {
@@ -43,10 +43,10 @@ index 87c3d3276..1bfe4e475 100644
  
              if (this.a(entityplayer, force, d0, d1, d2, packetplayoutworldparticles)) { // CraftBukkit
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 3fd589a53..f0cd2afb5 100644
+index 06bf5624..752826b7 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -2241,11 +2241,17 @@ public class CraftWorld implements World {
+@@ -2250,11 +2250,17 @@ public class CraftWorld implements World {
  
      @Override
      public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data, boolean force) {
@@ -66,5 +66,5 @@ index 3fd589a53..f0cd2afb5 100644
                  x, y, z, // Position
                  count,  // Count
 -- 
-2.24.0.windows.2
+2.17.1
 

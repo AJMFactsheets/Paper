@@ -1,4 +1,4 @@
-From 54d68a4ac1b0007c0faa4fb02a466946e5116f3c Mon Sep 17 00:00:00 2001
+From 3f7c3b5cd0ed2e12039fdf3cdc574bf725bb3bd2 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 19 Jan 2018 00:36:25 -0500
 Subject: [PATCH] Add setPlayerProfile API for Skulls
@@ -7,7 +7,7 @@ This allows you to create already filled textures on Skulls to avoid texture loo
 which commonly cause rate limit issues with Mojang API
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/block/CraftSkull.java b/src/main/java/org/bukkit/craftbukkit/block/CraftSkull.java
-index a4bc7f970..2dd2f476f 100644
+index a4bc7f97..2dd2f476 100644
 --- a/src/main/java/org/bukkit/craftbukkit/block/CraftSkull.java
 +++ b/src/main/java/org/bukkit/craftbukkit/block/CraftSkull.java
 @@ -1,5 +1,7 @@
@@ -48,7 +48,7 @@ index a4bc7f970..2dd2f476f 100644
      public BlockFace getRotation() {
          BlockData blockData = getBlockData();
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaSkull.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaSkull.java
-index 4fb27cc7e..18545e5ef 100644
+index 4fb27cc7..96d62bbf 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaSkull.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaSkull.java
 @@ -3,6 +3,8 @@ package org.bukkit.craftbukkit.inventory;
@@ -75,7 +75,7 @@ index 4fb27cc7e..18545e5ef 100644
 +    // Paper start
 +    @Override
 +    public void setPlayerProfile(@Nullable PlayerProfile profile) {
-+        this.profile = (profile == null) ? null : CraftPlayerProfile.asAuthlibCopy(profile);
++        setProfile((profile == null) ? null : CraftPlayerProfile.asAuthlibCopy(profile));
 +    }
 +
 +    @Nullable
@@ -89,5 +89,5 @@ index 4fb27cc7e..18545e5ef 100644
      public OfflinePlayer getOwningPlayer() {
          if (hasOwner()) {
 -- 
-2.24.0.windows.2
+2.17.1
 

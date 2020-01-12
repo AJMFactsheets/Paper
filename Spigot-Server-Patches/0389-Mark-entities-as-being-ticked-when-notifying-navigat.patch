@@ -1,11 +1,11 @@
-From 87d4c6a82a0e00d49280609868f024088483f197 Mon Sep 17 00:00:00 2001
+From 4716980fae24bee031baaae766110ba31e44d2e9 Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Sun, 28 Jul 2019 00:51:11 +0100
 Subject: [PATCH] Mark entities as being ticked when notifying navigation
 
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 9d8483234..e2e37be38 100644
+index 9d848323..e2e37be3 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -1382,6 +1382,7 @@ public class WorldServer extends World {
@@ -25,5 +25,5 @@ index 9d8483234..e2e37be38 100644
      }
  
 -- 
-2.24.0.windows.2
+2.17.1
 

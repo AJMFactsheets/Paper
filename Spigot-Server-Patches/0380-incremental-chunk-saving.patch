@@ -1,11 +1,11 @@
-From 0cc1e1708c5da2c54f1badd6d7e59e69b0bb6861 Mon Sep 17 00:00:00 2001
+From 278455011f493988a5f04a9f3605febe8635108e Mon Sep 17 00:00:00 2001
 From: Shane Freeder <theboyetronic@gmail.com>
 Date: Sun, 9 Jun 2019 03:53:22 +0100
 Subject: [PATCH] incremental chunk saving
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
-index 778de4630..99f1541b9 100644
+index 778de463..99f1541b 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 @@ -485,4 +485,19 @@ public class PaperWorldConfig {
@@ -29,7 +29,7 @@ index 778de4630..99f1541b9 100644
 +    }
  }
 diff --git a/src/main/java/net/minecraft/server/Chunk.java b/src/main/java/net/minecraft/server/Chunk.java
-index 659ee8243..65d66f607 100644
+index 659ee824..65d66f60 100644
 --- a/src/main/java/net/minecraft/server/Chunk.java
 +++ b/src/main/java/net/minecraft/server/Chunk.java
 @@ -42,7 +42,7 @@ public class Chunk implements IChunkAccess {
@@ -42,7 +42,7 @@ index 659ee8243..65d66f607 100644
      private long inhabitedTime;
      @Nullable
 diff --git a/src/main/java/net/minecraft/server/ChunkProviderServer.java b/src/main/java/net/minecraft/server/ChunkProviderServer.java
-index ede3e58a9..0b70ad09d 100644
+index ede3e58a..0b70ad09 100644
 --- a/src/main/java/net/minecraft/server/ChunkProviderServer.java
 +++ b/src/main/java/net/minecraft/server/ChunkProviderServer.java
 @@ -430,6 +430,15 @@ public class ChunkProviderServer extends IChunkProvider {
@@ -62,7 +62,7 @@ index ede3e58a9..0b70ad09d 100644
      public void close() throws IOException {
          // CraftBukkit start
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 105ac1358..4eba20b6a 100644
+index 105ac135..4eba20b6 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -168,6 +168,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
@@ -108,7 +108,7 @@ index 105ac1358..4eba20b6a 100644
          this.methodProfiler.enter("snooper");
          if (((DedicatedServer) this).getDedicatedServerProperties().snooperEnabled && !this.snooper.d() && this.ticks > 100) { // Spigot
 diff --git a/src/main/java/net/minecraft/server/PlayerChunk.java b/src/main/java/net/minecraft/server/PlayerChunk.java
-index b34312907..c05bdacce 100644
+index b3431290..c05bdacc 100644
 --- a/src/main/java/net/minecraft/server/PlayerChunk.java
 +++ b/src/main/java/net/minecraft/server/PlayerChunk.java
 @@ -40,6 +40,9 @@ public class PlayerChunk {
@@ -175,7 +175,7 @@ index b34312907..c05bdacce 100644
      public void a(ProtoChunkExtension protochunkextension) {
          for (int i = 0; i < this.statusFutures.length(); ++i) {
 diff --git a/src/main/java/net/minecraft/server/PlayerChunkMap.java b/src/main/java/net/minecraft/server/PlayerChunkMap.java
-index 7cae86c84..72e9626d5 100644
+index 7cae86c8..72e9626d 100644
 --- a/src/main/java/net/minecraft/server/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/PlayerChunkMap.java
 @@ -331,6 +331,61 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.d {
@@ -259,7 +259,7 @@ index 7cae86c84..72e9626d5 100644
                      return PlayerChunk.getChunkState(playerchunk.getTicketLevel());
                  });
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index a38dcda23..f413a3498 100644
+index a38dcda2..f413a349 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -800,11 +800,44 @@ public class WorldServer extends World {
@@ -317,5 +317,5 @@ index a38dcda23..f413a3498 100644
          this.checkSession();
          this.worldProvider.i();
 -- 
-2.24.1.windows.2
+2.17.1
 

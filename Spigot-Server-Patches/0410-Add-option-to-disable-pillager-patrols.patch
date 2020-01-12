@@ -1,11 +1,11 @@
-From 79da23b40bf4cac2d884e85c4dff17855b481646 Mon Sep 17 00:00:00 2001
+From 8ea8dadb2d8c7949253cf865ed4a67949ae5194e Mon Sep 17 00:00:00 2001
 From: William Blake Galbreath <blake.galbreath@gmail.com>
 Date: Wed, 9 Oct 2019 21:46:15 -0500
 Subject: [PATCH] Add option to disable pillager patrols
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
-index c0af1aaf3..dbc645ebb 100644
+index c0af1aaf..dbc645eb 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 @@ -626,4 +626,9 @@ public class PaperWorldConfig {
@@ -19,7 +19,7 @@ index c0af1aaf3..dbc645ebb 100644
 +    }
  }
 diff --git a/src/main/java/net/minecraft/server/MobSpawnerPatrol.java b/src/main/java/net/minecraft/server/MobSpawnerPatrol.java
-index 55fc19fdc..38de3a618 100644
+index 55fc19fd..38de3a61 100644
 --- a/src/main/java/net/minecraft/server/MobSpawnerPatrol.java
 +++ b/src/main/java/net/minecraft/server/MobSpawnerPatrol.java
 @@ -9,6 +9,7 @@ public class MobSpawnerPatrol {
@@ -31,5 +31,5 @@ index 55fc19fdc..38de3a618 100644
              return 0;
          } else {
 -- 
-2.24.0.windows.2
+2.17.1
 

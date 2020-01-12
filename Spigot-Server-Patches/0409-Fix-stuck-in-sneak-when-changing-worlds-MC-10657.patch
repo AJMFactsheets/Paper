@@ -1,11 +1,11 @@
-From df1a378b970f3f025e5377657f81764cd0516a26 Mon Sep 17 00:00:00 2001
+From dc1085f82d227f63968f9f2cc80e4d7946a787f4 Mon Sep 17 00:00:00 2001
 From: William Blake Galbreath <blake.galbreath@gmail.com>
 Date: Wed, 9 Oct 2019 21:51:43 -0500
 Subject: [PATCH] Fix stuck in sneak when changing worlds (MC-10657)
 
 
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index b6f52da81..6a9e1af6c 100644
+index b6f52da8..6a9e1af6 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
 @@ -951,6 +951,8 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
@@ -18,7 +18,7 @@ index b6f52da81..6a9e1af6c 100644
              PlayerChangedWorldEvent changeEvent = new PlayerChangedWorldEvent(this.getBukkitEntity(), worldserver.getWorld());
              this.world.getServer().getPluginManager().callEvent(changeEvent);
 diff --git a/src/main/java/net/minecraft/server/PlayerList.java b/src/main/java/net/minecraft/server/PlayerList.java
-index f702619aa..7b79ee4fe 100644
+index f702619a..7b79ee4f 100644
 --- a/src/main/java/net/minecraft/server/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/PlayerList.java
 @@ -729,6 +729,8 @@ public abstract class PlayerList {
@@ -31,5 +31,5 @@ index f702619aa..7b79ee4fe 100644
          entityplayer.triggerDimensionAdvancements(((CraftWorld) fromWorld).getHandle());
  
 -- 
-2.24.0.windows.2
+2.17.1
 

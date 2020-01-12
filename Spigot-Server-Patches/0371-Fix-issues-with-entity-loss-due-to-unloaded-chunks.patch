@@ -1,4 +1,4 @@
-From 71a84afebdadcbac7b787c1437d04a125fac67d1 Mon Sep 17 00:00:00 2001
+From 160fadcedc3284c1e92e558d154b66c90e2135a5 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Fri, 28 Sep 2018 21:49:53 -0400
 Subject: [PATCH] Fix issues with entity loss due to unloaded chunks
@@ -19,7 +19,7 @@ This change ensures the chunks are always loaded when entities are
 added to the world, or a valid entity moves between chunks.
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 99b121119..e8369df9e 100644
+index 99b12111..e8369df9 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -693,7 +693,7 @@ public class WorldServer extends World {
@@ -41,5 +41,5 @@ index 99b121119..e8369df9e 100644
              if (!(ichunkaccess instanceof Chunk)) {
                  return false;
 -- 
-2.24.0.windows.2
+2.17.1
 

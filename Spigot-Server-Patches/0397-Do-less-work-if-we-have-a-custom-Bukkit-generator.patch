@@ -1,4 +1,4 @@
-From 4d33dc981a3dc1588cd57fd5ba740b2155604592 Mon Sep 17 00:00:00 2001
+From 8418a24794afbd66000692d33d02ef1baba3de72 Mon Sep 17 00:00:00 2001
 From: Paul Sauve <paul@burngames.net>
 Date: Sun, 14 Jul 2019 21:05:03 -0500
 Subject: [PATCH] Do less work if we have a custom Bukkit generator
@@ -7,7 +7,7 @@ If the Bukkit generator already has a spawn, use it immediately instead
 of spending time generating one that we won't use
 
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 01ab2dc1d..bf64b9af1 100644
+index 01ab2dc1..bf64b9af 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -797,12 +797,13 @@ public class WorldServer extends World {
@@ -45,5 +45,5 @@ index 01ab2dc1d..bf64b9af1 100644
                  WorldServer.LOGGER.warn("Unable to find spawn biome");
              }
 -- 
-2.24.0.windows.2
+2.17.1
 

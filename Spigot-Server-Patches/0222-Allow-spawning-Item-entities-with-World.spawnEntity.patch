@@ -1,4 +1,4 @@
-From dca1e77cc5a759881e00f9d01c27edea19879db0 Mon Sep 17 00:00:00 2001
+From 7945f5ce7640417dc453c0cfa46b8a67061b8613 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Mon, 4 Jun 2018 20:39:20 -0400
 Subject: [PATCH] Allow spawning Item entities with World.spawnEntity
@@ -8,10 +8,10 @@ This API has more capabilities than .dropItem with the Consumer function
 Item can be set inside of the Consumer pre spawn function.
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index f0cd2afb5..24b79d110 100644
+index 752826b7..40eb71d9 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -1473,6 +1473,10 @@ public class CraftWorld implements World {
+@@ -1472,6 +1472,10 @@ public class CraftWorld implements World {
          if (Boat.class.isAssignableFrom(clazz)) {
              entity = new EntityBoat(world, x, y, z);
              entity.setPositionRotation(x, y, z, yaw, pitch);
@@ -23,5 +23,5 @@ index f0cd2afb5..24b79d110 100644
              entity = new EntityFallingBlock(world, x, y, z, world.getType(new BlockPosition(x, y, z)));
          } else if (Projectile.class.isAssignableFrom(clazz)) {
 -- 
-2.24.0.windows.2
+2.17.1
 

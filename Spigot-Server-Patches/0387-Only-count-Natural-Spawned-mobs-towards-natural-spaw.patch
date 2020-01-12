@@ -1,4 +1,4 @@
-From 0eeb9dbd2ee95822e48fed16033232c2de1d9699 Mon Sep 17 00:00:00 2001
+From 614ef8671345ce7312f18ba7d624d14db770dfb5 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 24 Mar 2019 01:01:32 -0400
 Subject: [PATCH] Only count Natural Spawned mobs towards natural spawn mob
@@ -17,7 +17,7 @@ This should fully solve all of the issues around it so that only natural
 influences natural spawns.
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
-index 6634ef923..2f0b06dc5 100644
+index 6634ef92..2f0b06dc 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 @@ -505,6 +505,16 @@ public class PaperWorldConfig {
@@ -38,7 +38,7 @@ index 6634ef923..2f0b06dc5 100644
      public boolean asynchronous;
      public EngineMode engineMode;
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index f413a3498..9d8483234 100644
+index f413a349..9d848323 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -943,6 +943,13 @@ public class WorldServer extends World {
@@ -56,5 +56,5 @@ index f413a3498..9d8483234 100644
              }
          }
 -- 
-2.24.0.windows.2
+2.17.1
 

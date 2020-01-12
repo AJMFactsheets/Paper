@@ -1,11 +1,11 @@
-From e8bb4206c0aa7f9ae4db946a5296cce8ee081b05 Mon Sep 17 00:00:00 2001
+From 94bb263e504691d2322bd4dc97c7df45049a2e03 Mon Sep 17 00:00:00 2001
 From: BlackHole <black-hole@live.com>
 Date: Sun, 15 Dec 2019 19:12:39 +0100
 Subject: [PATCH] Add CraftMagicNumbers.isSupportedApiVersion()
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
-index 40f7b433a..ab3ebc79e 100644
+index 40f7b433..ab3ebc79 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
 +++ b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
 @@ -298,6 +298,11 @@ public final class CraftMagicNumbers implements UnsafeValues {
@@ -21,5 +21,5 @@ index 40f7b433a..ab3ebc79e 100644
  
      /**
 -- 
-2.24.0.windows.2
+2.17.1
 

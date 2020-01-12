@@ -1,4 +1,4 @@
-From f496e8426e74378b937b4972a29dc00bc5271841 Mon Sep 17 00:00:00 2001
+From 5661c73f6c62efe0c9d560b9fd5e2d42fa6b6ff9 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sat, 21 Jul 2018 14:27:34 -0400
 Subject: [PATCH] Duplicate UUID Resolve Option
@@ -33,7 +33,7 @@ But for those who are ok with leaving this inconsistent behavior, you may use WA
 It is recommended you regenerate the entities, as these were legit entities, and deserve your love.
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
-index 357c7cf1d..2b2c82d5e 100644
+index 357c7cf1..2b2c82d5 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 @@ -440,4 +440,43 @@ public class PaperWorldConfig {
@@ -81,7 +81,7 @@ index 357c7cf1d..2b2c82d5e 100644
 +    }
  }
 diff --git a/src/main/java/net/minecraft/server/Chunk.java b/src/main/java/net/minecraft/server/Chunk.java
-index 845b2bea1..e4c2cabed 100644
+index d79fc34b..659ee824 100644
 --- a/src/main/java/net/minecraft/server/Chunk.java
 +++ b/src/main/java/net/minecraft/server/Chunk.java
 @@ -396,6 +396,7 @@ public class Chunk implements IChunkAccess {
@@ -93,7 +93,7 @@ index 845b2bea1..e4c2cabed 100644
  
          int k = MathHelper.floor(entity.locY() / 16.0D);
 diff --git a/src/main/java/net/minecraft/server/Entity.java b/src/main/java/net/minecraft/server/Entity.java
-index 96b0917a3..f0d1a5b14 100644
+index 96b0917a..f0d1a5b1 100644
 --- a/src/main/java/net/minecraft/server/Entity.java
 +++ b/src/main/java/net/minecraft/server/Entity.java
 @@ -2735,6 +2735,7 @@ public abstract class Entity implements INamableTileEntity, ICommandListener, Ke
@@ -105,7 +105,7 @@ index 96b0917a3..f0d1a5b14 100644
          this.uniqueID = uuid;
          this.am = this.uniqueID.toString();
 diff --git a/src/main/java/net/minecraft/server/PlayerChunkMap.java b/src/main/java/net/minecraft/server/PlayerChunkMap.java
-index 0f573b9b7..36fb8fcd2 100644
+index 2eb7068c..8092ec65 100644
 --- a/src/main/java/net/minecraft/server/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/PlayerChunkMap.java
 @@ -1,6 +1,7 @@
@@ -210,7 +210,7 @@ index 0f573b9b7..36fb8fcd2 100644
  
                      if (list != null) {
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index e8369df9e..1b4fb3c51 100644
+index e8369df9..1b4fb3c5 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -3,6 +3,8 @@ package net.minecraft.server;
@@ -258,5 +258,5 @@ index e8369df9e..1b4fb3c51 100644
                  logger.error("Overwrote an existing entity " + old + " with " + entity);
                  if (DEBUG_ENTITIES) {
 -- 
-2.24.0.windows.2
+2.17.1
 

@@ -1,4 +1,4 @@
-From 4aba81ebb94115185e686aba3d1699a1d6254cf4 Mon Sep 17 00:00:00 2001
+From 32ae1daac76c83e157347ec48bf951ef72f1279f Mon Sep 17 00:00:00 2001
 From: Spottedleaf <Spottedleaf@users.noreply.github.com>
 Date: Mon, 8 Jul 2019 00:13:36 -0700
 Subject: [PATCH] Use getChunkIfLoadedImmediately in places
@@ -8,7 +8,7 @@ ticket level 33 (yes getChunkIfLoaded will actually perform a chunk
 load in that case).
 
 diff --git a/src/main/java/net/minecraft/server/Entity.java b/src/main/java/net/minecraft/server/Entity.java
-index f0d1a5b14..8c88cf637 100644
+index f0d1a5b1..8c88cf63 100644
 --- a/src/main/java/net/minecraft/server/Entity.java
 +++ b/src/main/java/net/minecraft/server/Entity.java
 @@ -204,7 +204,7 @@ public abstract class Entity implements INamableTileEntity, ICommandListener, Ke
@@ -21,7 +21,7 @@ index f0d1a5b14..8c88cf637 100644
      // CraftBukkit end
  
 diff --git a/src/main/java/net/minecraft/server/PlayerConnection.java b/src/main/java/net/minecraft/server/PlayerConnection.java
-index 8c54022e0..f6fbba36f 100644
+index 8c54022e..f6fbba36 100644
 --- a/src/main/java/net/minecraft/server/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/PlayerConnection.java
 @@ -989,7 +989,7 @@ public class PlayerConnection implements PacketListenerPlayIn {
@@ -34,7 +34,7 @@ index 8c54022e0..f6fbba36f 100644
                                  return;
                              }
 diff --git a/src/main/java/net/minecraft/server/World.java b/src/main/java/net/minecraft/server/World.java
-index 06e8c27d9..37604d8cc 100644
+index 06e8c27d..37604d8c 100644
 --- a/src/main/java/net/minecraft/server/World.java
 +++ b/src/main/java/net/minecraft/server/World.java
 @@ -130,8 +130,16 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
@@ -73,7 +73,7 @@ index 06e8c27d9..37604d8cc 100644
              return ichunkaccess == null ? false : ichunkaccess.getType(blockposition).a((IBlockAccess) this, blockposition, entity);
          }
 diff --git a/src/main/java/org/spigotmc/ActivationRange.java b/src/main/java/org/spigotmc/ActivationRange.java
-index f86404f83..92601c581 100644
+index f86404f8..92601c58 100644
 --- a/src/main/java/org/spigotmc/ActivationRange.java
 +++ b/src/main/java/org/spigotmc/ActivationRange.java
 @@ -143,9 +143,10 @@ public class ActivationRange
@@ -90,5 +90,5 @@ index f86404f83..92601c581 100644
                  }
              }
 -- 
-2.24.0.windows.2
+2.17.1
 

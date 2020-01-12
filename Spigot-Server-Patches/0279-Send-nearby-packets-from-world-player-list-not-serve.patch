@@ -1,11 +1,11 @@
-From 14dcf27ab917586d9daf874049189c89f574e4af Mon Sep 17 00:00:00 2001
+From 5b7ccd200c84718b9440a7ebf59d33076b2e6a0b Mon Sep 17 00:00:00 2001
 From: Mystiflow <mystiflow@gmail.com>
 Date: Fri, 6 Jul 2018 13:21:30 +0100
 Subject: [PATCH] Send nearby packets from world player list not server list
 
 
 diff --git a/src/main/java/net/minecraft/server/PlayerList.java b/src/main/java/net/minecraft/server/PlayerList.java
-index fd0f5c6f2..e46436623 100644
+index fd0f5c6f..e4643662 100644
 --- a/src/main/java/net/minecraft/server/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/PlayerList.java
 @@ -923,8 +923,25 @@ public abstract class PlayerList {
@@ -46,7 +46,7 @@ index fd0f5c6f2..e46436623 100644
                  double d5 = d1 - entityplayer.locY();
                  double d6 = d2 - entityplayer.locZ();
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 56d56ef0e..77c01e26c 100644
+index 56d56ef0..77c01e26 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -1261,7 +1261,7 @@ public class WorldServer extends World {
@@ -68,10 +68,10 @@ index 56d56ef0e..77c01e26c 100644
          }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index a9275137e..7d620ef59 100644
+index 030d01bd..040dde93 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -2076,7 +2076,7 @@ public class CraftWorld implements World {
+@@ -2085,7 +2085,7 @@ public class CraftWorld implements World {
          double z = loc.getZ();
  
          PacketPlayOutCustomSoundEffect packet = new PacketPlayOutCustomSoundEffect(new MinecraftKey(sound), SoundCategory.valueOf(category.name()), new Vec3D(x, y, z), volume, pitch);
@@ -81,5 +81,5 @@ index a9275137e..7d620ef59 100644
  
      private static Map<String, GameRules.GameRuleKey<?>> gamerules;
 -- 
-2.24.0.windows.2
+2.17.1
 

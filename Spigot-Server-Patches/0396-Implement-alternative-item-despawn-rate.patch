@@ -1,11 +1,11 @@
-From 7680f018f5b2d56c023178fd3de62aa5ddcba7bd Mon Sep 17 00:00:00 2001
+From bbf788bf0e9c06d58d5b92c0261d920a530620a3 Mon Sep 17 00:00:00 2001
 From: kickash32 <kickash32@gmail.com>
 Date: Mon, 3 Jun 2019 02:02:39 -0400
 Subject: [PATCH] Implement alternative item-despawn-rate
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
-index 0fc77ac28..3dfe54ad3 100644
+index 0fc77ac2..3dfe54ad 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperWorldConfig.java
 @@ -1,12 +1,17 @@
@@ -80,7 +80,7 @@ index 0fc77ac28..3dfe54ad3 100644
 +    }
  }
 diff --git a/src/main/java/net/minecraft/server/EntityItem.java b/src/main/java/net/minecraft/server/EntityItem.java
-index a0d1e7fd2..e61af3f5e 100644
+index a0d1e7fd..e61af3f5 100644
 --- a/src/main/java/net/minecraft/server/EntityItem.java
 +++ b/src/main/java/net/minecraft/server/EntityItem.java
 @@ -6,6 +6,7 @@ import java.util.Objects;
@@ -128,5 +128,5 @@ index a0d1e7fd2..e61af3f5e 100644
      public Packet<?> L() {
          return new PacketPlayOutSpawnEntity(this);
 -- 
-2.24.0.windows.2
+2.17.1
 

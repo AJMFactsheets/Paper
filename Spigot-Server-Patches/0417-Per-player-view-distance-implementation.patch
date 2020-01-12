@@ -934,4 +934,3 @@ index 92601c581..0df0c73f7 100644
              ActivationType.MISC.boundingBox = player.getBoundingBox().grow( miscActivationRange, 256, miscActivationRange );
 -- 
 2.24.1.windows.2
-

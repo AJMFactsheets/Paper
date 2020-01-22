@@ -1,0 +1,33 @@
+From 1c88eae2df9f74928c2f8e00a57c6bc1d20c4898 Mon Sep 17 00:00:00 2001
+From: AJMFactsheets <AJMFactsheets@gmail.com>
+Date: Tue, 21 Jan 2020 22:07:10 -0600
+Subject: [PATCH] Fix items vanishing through end portal
+
+If the Paper configuration option "keep-spawn-loaded" is set to false,
+items entering the overworld from the end will spawn at Y = 0.
+
+This is due to logic in the getHighestBlockYAt method in World.java
+only searching the heightmap if the chunk is loaded.
+
+Quickly loading the exact world spawn chunk before searching the
+heightmap resolves the issue without having to load all spawn chunks.
+
+diff --git a/src/main/java/net/minecraft/server/Entity.java b/src/main/java/net/minecraft/server/Entity.java
+index e8def7f8..d106ae95 100644
+--- a/src/main/java/net/minecraft/server/Entity.java
++++ b/src/main/java/net/minecraft/server/Entity.java
+@@ -2591,6 +2591,11 @@ public abstract class Entity implements INamableTileEntity, ICommandListener, Ke
+ 
+         if (blockposition == null) { // CraftBukkit
+             if (dimensionmanager1.getType() == DimensionManager.THE_END && dimensionmanager == DimensionManager.OVERWORLD) { // CraftBukkit
++                // Paper start - Load world spawn chunk to calculate correct Y coordinate
++                if (!this.world.paperConfig.keepSpawnInMemory) {
++                    worldserver1.getChunkAtWorldCoords(worldserver1.getSpawn());
++                }
++                // Paper end
+                 blockposition = worldserver1.getHighestBlockYAt(HeightMap.Type.MOTION_BLOCKING_NO_LEAVES, worldserver1.getSpawn());
+             } else if (dimensionmanager.getType() == DimensionManager.THE_END) { // CraftBukkit
+                 blockposition = worldserver1.getDimensionSpawn();
+-- 
+2.17.1
+
